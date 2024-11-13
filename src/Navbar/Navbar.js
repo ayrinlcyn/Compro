@@ -19,14 +19,14 @@ function Navbar() {
       {/* Logo - Mobile */}
       <div className="md:hidden absolute inset-x-0 flex justify-center z-0">
         <Link to="/" className="text-2xl font-bold text-gray-900">
-          <img src='/Matoa.png' alt='Logo' className='h-16 md:h-24'/>
+          <img src='/Logo.png' alt='Logo' className='h-16 md:h-24'/>
         </Link>
       </div>
 
       {/* Logo - Desktop */}
       <div className="hidden md:flex absolute inset-x-0 justify-center z-0">
         <Link to="/" className="text-2xl font-bold text-gray-900">
-          <img src='/Matoa.png' alt='Logo' className='h-16 md:h-24'/>
+          <img src='/Logo.png' alt='Logo' className='h-16 md:h-24'/>
         </Link>
       </div>
 
