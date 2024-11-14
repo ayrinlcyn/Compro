@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from 'axios';
+import ImageCarousel from "./ImageCarousel";
 
 const ImageDetail = () => {
   const { id } = useParams(); // Get the content id from the URL parameter
@@ -54,18 +55,9 @@ const ImageDetail = () => {
       </div>
 
       <h1 className="text-lg font-bold p-10">YOU MAY ALSO LIKE</h1>
-      <div className="related-images grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 px-0 sm:px-10 p-10 justify-items-center w-full h-full">
-        {images.slice(1).map((relatedImg) => ( // Show remaining images as related images
-          <img
-            key={relatedImg.id}
-            src={`http://localhost:8000/storage/${relatedImg.url}`}
-            alt={title}
-            className="w-full h-[350px] md:h-[500px] object-cover"
-          />
-        ))}
-      </div>
+      <ImageCarousel images={images.slice(1)} />
     </div>
   );
 };
-
+ 
 export default ImageDetail;
