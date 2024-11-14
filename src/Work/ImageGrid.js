@@ -1,16 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import ImageCard from './ImageCard';
-import image1 from '../assets/image1.jpg';
-import image2 from '../assets/image2.jpg';
-import image3 from '../assets/image3.jpg';
-
-const images = [
-  { id: 1, src: image1, title: 'image 1' },
-  { id: 2, src: image2, title: 'image 2' },
-  { id: 3, src: image3, title: 'image 3' },
-];
 
 const ImageGrid = () => {
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/get-content');
+        if (response.data.status) {
+          // Flatten the images array across all content items
+          const imageList = response.data.data.reduce((acc, content) => {
+            const images = content.images.map((img) => ({
+              id: img.id,
+              src: img.url, // Assuming img.url is the full URL now
+              title: content.title || 'Untitled',
+              description: content.description || '',
+              contentId: content.id
+            }));
+            return acc.concat(images); // Accumulate all images into a single array
+          }, []);
+          console.log("Fetched images:", imageList); // Check here
+          setImages(imageList);
+        }
+      } catch (error) {
+        console.error("Error fetching images:", error);
+      }
+    };
+    
+    fetchImages();
+  }, []);
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-0 mt-10 sm:px-10 p-10 justify-items-center">
       {images.map((image) => (
