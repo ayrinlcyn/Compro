@@ -10,16 +10,19 @@ const ImageGrid = () => {
       try {
         const response = await axios.get('http://localhost:8000/api/get-content');
         if (response.data.status) {
-          // Flatten the images array across all content items
+          // Flatten the images array, but only include the first image for each content item
           const imageList = response.data.data.reduce((acc, content) => {
-            const images = content.images.map((img) => ({
-              id: img.id,
-              src: img.url, // Assuming img.url is the full URL now
-              title: content.title || 'Untitled',
-              description: content.description || '',
-              contentId: content.id
-            }));
-            return acc.concat(images); // Accumulate all images into a single array
+            if (content.images.length > 0) {
+              const firstImage = content.images[0]; // Get the first image of each content
+              acc.push({
+                id: firstImage.id,
+                src: firstImage.url, // Assuming img.url is the full URL now
+                title: content.title || 'Untitled',
+                description: content.description || '',
+                contentId: content.id
+              });
+            }
+            return acc;
           }, []);
           console.log("Fetched images:", imageList); // Check here
           setImages(imageList);
