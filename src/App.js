@@ -4,6 +4,7 @@ import Navbar from './Navbar/Navbar';
 import WorkPage from './Work/WorkPage';
 import AboutPage from './About/AboutPage';
 import ImageDetail from './Work/ImageDetail';
+import BackToTop from './widgets/BackToTop';
 
 
 function App() {
@@ -15,7 +16,9 @@ function App() {
         <Route path="/Work" element={<WorkPage />} />
         <Route path='/About' element={<AboutPage/>}/>
         <Route path="/image/:id" element={<ImageDetail />} />
+        
       </Routes>
+      <BackToTop/>
     </Router>
   );
 }

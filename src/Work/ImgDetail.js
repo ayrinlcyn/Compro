@@ -14,7 +14,6 @@ const ImgDetail = ({ images, title }) => {
 
   return (
     <div>
-      {/* Thumbnail Loop */}
       <div className="display-flex justify-items-center text-center">
         {images.map((image, index) => (
           <img
@@ -27,7 +26,6 @@ const ImgDetail = ({ images, title }) => {
         ))}
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
         <ImgModals
           images={images}
