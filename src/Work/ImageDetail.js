@@ -6,7 +6,7 @@ import ImageDesc from "./ImageDesc";
 import ImgDetail from "./ImgDetail";
 import OtherImage from "./OtherImage";
 import BackToTop from "../widgets/BackToTop";
-
+import Loading from "../widgets/Loading"
 const ImageDetail = () => {
   const { id } = useParams();
   const [content, setContent] = useState(null);
@@ -37,7 +37,7 @@ const ImageDetail = () => {
     fetchContent();
   }, [id]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loading />;
 
   if (!content) {
     return <p>Content not found</p>;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Loading from '../widgets/Loading';
 
 const Client = () => {
   const [clients, setClients] = useState([]); // State untuk menyimpan array klien
@@ -25,7 +26,7 @@ const Client = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>; // Tampilkan loading jika data sedang diambil
+    return <Loading/>; // Tampilkan loading jika data sedang diambil
   }
 
   return (

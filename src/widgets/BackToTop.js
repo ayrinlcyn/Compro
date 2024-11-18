@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaLongArrowAltUp } from "react-icons/fa";
+import { IoIosArrowRoundUp } from "react-icons/io";
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,9 +29,12 @@ const BackToTop = () => {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-5 right-10 z-50 bg-gray-300 text-white rounded-full px-4 py-4 shadow-lg hover:bg-black transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-300"
+          className="fixed bottom-10 right-6 z-50 bg-[#e8e8e8] rounded-full p-3 hover:bg-black transition duration-300 focus:outline-none focus:ring-2 focus:ring-gray-300 group"
         >
-          <FaLongArrowAltUp size={24}/>
+          <IoIosArrowRoundUp
+            size={38}
+            className="text-[#818181] group-hover:text-white transition duration-300"
+          />
         </button>
       )}
     </>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Loading from '../widgets/Loading';
 
 const AboutDescription = () => {
   const [description, setDescription] = useState([]); 
@@ -23,7 +24,7 @@ const AboutDescription = () => {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>; 
+    return <Loading/>; 
   }
 
   return (
