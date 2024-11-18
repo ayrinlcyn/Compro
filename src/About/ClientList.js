@@ -1,33 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import Loading from '../widgets/Loading';
+import axios from 'axios';;
 
-const Client = () => {
-  const [clients, setClients] = useState([]); // State untuk menyimpan array klien
-  const [loading, setLoading] = useState(true); // State untuk loading
+const ClientList = ({ setLoading }) => {
+  const [clients, setClients] = useState([]);
 
   useEffect(() => {
     const fetchClients = async () => {
       try {
+        setLoading(true); 
         const response = await axios.get('http://localhost:8000/api/get-about');
         if (response.data.status) {
-    
           const clientList = response.data.data.clients.split(',').map(client => client.trim());
           setClients(clientList);
         }
       } catch (error) {
         console.error('Error fetching clients:', error);
       } finally {
-        setLoading(false); // Set loading selesai
+        setLoading(false); 
       }
     };
 
     fetchClients();
-  }, []);
-
-  if (loading) {
-    return <Loading/>; // Tampilkan loading jika data sedang diambil
-  }
+  }, [setLoading]);
 
   return (
     <div className="grid md:grid-cols-1 sm:grid-cols-1 gap-4 mt-10 max-w-lg mx-auto">
@@ -43,4 +37,4 @@ const Client = () => {
   );
 };
 
-export default Client;
+export default ClientList;

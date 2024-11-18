@@ -33,7 +33,7 @@ const ImageGrid = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-0 mt-10 sm:px-10 p-10 justify-items-center">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-0 mt-10 sm:px-10 p-10 justify-items-center mx-auto md:max-w-[80%]">
       {images.map((image) => (
         <ImageCard key={image.id} image={image} />
       ))}

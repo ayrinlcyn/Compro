@@ -33,7 +33,7 @@ const BackToTop = () => {
         >
           <IoIosArrowRoundUp
             size={38}
-            className="text-[#818181] group-hover:text-white transition duration-300"
+            className="text-[#818181] group-hover:text-white transition duration-300 "
           />
         </button>
       )}

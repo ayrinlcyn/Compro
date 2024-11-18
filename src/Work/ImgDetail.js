@@ -14,7 +14,7 @@ const ImgDetail = ({ images, title }) => {
 
   return (
     <div>
-      <div className="display-flex justify-items-center text-center">
+      <div className="display-flex justify-items-center text-center mx-auto md:max-w-[80%]">
         {images.map((image, index) => (
           <img
             key={index}
