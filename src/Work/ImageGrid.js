@@ -10,28 +10,25 @@ const ImageGrid = () => {
       try {
         const response = await axios.get('http://localhost:8000/api/get-content');
         if (response.data.status) {
-          // Flatten the images array, but only include the first image for each content item
-          const imageList = response.data.data.reduce((acc, content) => {
-            if (content.images.length > 0) {
-              const firstImage = content.images[0]; // Get the first image of each content
-              acc.push({
-                id: firstImage.id,
-                src: firstImage.url, // Assuming img.url is the full URL now
-                title: content.title || 'Untitled',
-                description: content.description || '',
-                contentId: content.id
-              });
-            }
-            return acc;
-          }, []);
-          console.log("Fetched images:", imageList); // Check here
+          // Include all contents, provide default values for missing images
+          const imageList = response.data.data.map((content) => {
+            const firstImage = content.images.length > 0 ? content.images[0] : null; // Check if there is any image
+            return {
+              id: firstImage ? firstImage.id : `content-${content.id}`, // Unique fallback ID
+              src: firstImage ? firstImage.url : null, // Use null if no image
+              title: content.title || 'Untitled',
+              description: content.description || '',
+              contentId: content.id,
+            };
+          });
+          console.log("Fetched images:", imageList); // Debugging
           setImages(imageList);
         }
       } catch (error) {
         console.error("Error fetching images:", error);
       }
     };
-    
+
     fetchImages();
   }, []);
 
