@@ -23,9 +23,7 @@ const AboutDescription = () => {
     fetchDescription();
   }, []);
 
-  if (loading) {
-    return <Loading/>; 
-  }
+ 
 
   return (
     <div className="text-center">
