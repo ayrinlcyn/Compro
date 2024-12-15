@@ -64,7 +64,7 @@ const ImageDetail = () => {
       <ImageDesc description={description} />
       <ImgDetail images={images} title={title} />
 
-      <h1 className="text-lg font-bold p-10 mx-auto md:max-w-[80%]">YOU MAY ALSO LIKE</h1>
+      <h1 className="text-lg font-bold p-10 mx-auto md:max-w-[90%]">YOU MAY ALSO LIKE</h1>
       <OtherImage relatedImages={relatedImages} />
       <BackToTop />
     </div>

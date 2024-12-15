@@ -9,7 +9,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="flex items-center justify-between px-10 py-[70px] mx-auto md:max-w-[80%] relative z-10">
+    <nav className="flex items-center justify-between px-10 py-[70px] mx-auto md:max-w-[90%] relative z-10">
       {/* Menu Links */}
       <div className="flex space-x-6 z-20">
         <NavLink 

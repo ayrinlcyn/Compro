@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Loading from '../widgets/Loading';
 
-const AboutDescription = ({ setLoading }) => {
+const AboutDescription = () => {
   const [description, setDescription] = useState([]); 
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchDescription = async () => {
       try {
-        setLoading(true); 
         const response = await axios.get('http://localhost:8000/api/get-about');
         if (response.data.status) {
           setDescription(response.data.data.description.split('\n')); 
@@ -20,7 +21,9 @@ const AboutDescription = ({ setLoading }) => {
     };
 
     fetchDescription();
-  }, [setLoading]);
+  }, []);
+
+ 
 
   return (
     <div className="text-center">

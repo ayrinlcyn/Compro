@@ -17,7 +17,7 @@ const OtherImage = ({ relatedImages }) => {
   }
 
   return (
-    <div className="relative h-full px-10 mx-auto md:max-w-[80%]">
+    <div className="relative h-full px-10 mx-auto md:max-w-[90%]">
       {/* Custom Prev Button */}
       <button
         ref={prevRef}
