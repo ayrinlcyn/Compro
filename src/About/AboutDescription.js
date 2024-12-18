@@ -10,8 +10,10 @@ const AboutDescription = () => {
     const fetchDescription = async () => {
       try {
         const response = await axios.get('http://localhost:8000/api/get-about');
-        if (response.data.status) {
-          setDescription(response.data.data.description.split('\n')); 
+        if (response.data.data.length > 0) {
+          const aboutData = response.data.data[0]; // Ambil objek pertama
+          const parsedDescription = aboutData.description.split('\n'); // Split deskripsi ke array
+          setDescription(parsedDescription);
         }
       } catch (error) {
         console.error('Error fetching about description:', error);
@@ -23,7 +25,9 @@ const AboutDescription = () => {
     fetchDescription();
   }, []);
 
- 
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="text-center">

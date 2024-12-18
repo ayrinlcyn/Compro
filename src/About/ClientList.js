@@ -3,22 +3,25 @@ import axios from 'axios';
 import Loading from '../widgets/Loading';
 
 const Client = () => {
-  const [clients, setClients] = useState([]); // State untuk menyimpan array klien
-  const [loading, setLoading] = useState(true); // State untuk loading
+  const [clients, setClients] = useState([]); 
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchClients = async () => {
       try {
         const response = await axios.get('http://localhost:8000/api/get-about');
-        if (response.data.status) {
-    
-          const clientList = response.data.data.clients.split(',').map(client => client.trim());
+        if (response.data.data.length > 0) {
+          const aboutData = response.data.data[0]; // Ambil objek pertama
+          const clientList = aboutData.clients
+            .split(/[\n,]/) // Pisahkan dengan koma atau baris baru
+            .map(client => client.trim().replace(/^\["|"]$|^"|"$|\\n/g, '')) // Hapus tanda kutip dan karakter tidak diinginkan
+            .filter(client => client.length > 0); // Hilangkan elemen kosong
           setClients(clientList);
         }
       } catch (error) {
         console.error('Error fetching clients:', error);
       } finally {
-        setLoading(false); // Set loading selesai
+        setLoading(false); 
       }
     };
 
@@ -26,7 +29,7 @@ const Client = () => {
   }, []);
 
   if (loading) {
-    return <Loading/>; // Tampilkan loading jika data sedang diambil
+    return <Loading />;
   }
 
   return (
